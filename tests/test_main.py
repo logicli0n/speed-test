@@ -22,7 +22,9 @@ def test_request_result_speed_mbps() -> None:
     assert result.speed_mbps == pytest.approx(5.0)
 
 
-def test_run_single_request_sums_downloaded_bytes(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_run_single_request_sums_downloaded_bytes(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     chunks = [b"a" * 1000, b"b" * 500, b"c" * 250]
     fake_response = make_fake_response(chunks)
     monkeypatch.setattr(main.requests, "get", MagicMock(return_value=fake_response))
@@ -36,7 +38,9 @@ def test_run_single_request_sums_downloaded_bytes(monkeypatch: pytest.MonkeyPatc
     )
 
 
-def test_run_single_request_raises_on_http_error(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_run_single_request_raises_on_http_error(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     fake_response = make_fake_response([])
     fake_response.raise_for_status.side_effect = requests.exceptions.HTTPError("404")
     monkeypatch.setattr(main.requests, "get", MagicMock(return_value=fake_response))
@@ -109,7 +113,9 @@ def test_main_returns_zero_on_success(monkeypatch: pytest.MonkeyPatch) -> None:
     assert main.main(["https://example.com/file", "-n", "1"]) == 0
 
 
-def test_main_returns_one_when_all_requests_fail(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_main_returns_one_when_all_requests_fail(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     monkeypatch.setattr(main, "measure_speed", MagicMock(return_value=[]))
 
     assert main.main(["https://example.com/file", "-n", "1"]) == 1

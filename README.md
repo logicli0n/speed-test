@@ -71,6 +71,18 @@ pip install -r requirements-dev.txt
 pytest
 ```
 
+## Линтинг и форматирование
+
+Используются `black` (форматирование), `isort` (сортировка импортов) и
+`flake8` (линтинг), настройки — в `pyproject.toml` и `.flake8`:
+
+```bash
+pip install -r requirements-dev.txt
+black .
+isort .
+flake8
+```
+
 ## Как это работает
 
 1. Скрипт последовательно (не параллельно) выполняет `--count` GET-запросов

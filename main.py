@@ -89,21 +89,21 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "url",
         nargs="?",
         default=DEFAULT_URL,
-        help="URL файла для скачивания (по умолчанию: тестовый файл 10 МБ на proof.ovh.net)",
+        help="URL файла для скачивания (по умолчанию: тестовый файл 10 МБ)",
     )
     parser.add_argument(
         "-n",
         "--count",
         type=int,
         default=DEFAULT_REQUEST_COUNT,
-        help=f"количество последовательных запросов (по умолчанию: {DEFAULT_REQUEST_COUNT})",
+        help=f"количество запросов подряд (по умолчанию: {DEFAULT_REQUEST_COUNT})",
     )
     parser.add_argument(
         "-t",
         "--timeout",
         type=float,
         default=DEFAULT_TIMEOUT_SECONDS,
-        help=f"таймаут одного запроса в секундах (по умолчанию: {DEFAULT_TIMEOUT_SECONDS})",
+        help=f"таймаут запроса в секундах (по умолчанию: {DEFAULT_TIMEOUT_SECONDS})",
     )
     return parser.parse_args(argv)
 
